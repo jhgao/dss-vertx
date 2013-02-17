@@ -1,0 +1,28 @@
+
+package sg.sutd.dss.protocol.cmd;
+
+option java_package = "sg.edu.sutd.dss.protocol.cmd";
+option java_outer_classname = "CmdProtocol";
+
+message Cmd {
+  required string name = 1;
+  required int32 id = 2;        // Unique ID number for command.
+  optional string dbgString = 3;
+
+  enum CmdType {
+    STORAGE = 0;
+    CONTROL = 1;
+    HEARTBEAT = 2;
+  }
+  required CmdType type = 4;
+
+  message Argument {
+    optional string aString = 1;
+    optional int32 aInt32 = 2 [default = 0];
+  }
+}
+
+// the commands send in batched way
+message CmdList {
+  repeated Cmd command = 1;
+}
