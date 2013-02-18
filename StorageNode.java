@@ -3,11 +3,14 @@ import org.vertx.java.core.Handler;
 import org.vertx.java.core.buffer.Buffer;
 import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.core.net.*;
-import org.vertx.java.core.streams.Pump;
 import org.vertx.java.deploy.Verticle;
 
+import com.google.protobuf.*;
+
+import sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd;
+
 public class StorageNode extends Verticle {
-	public void start() {
+	public void start() { 
 		// log
 		final Logger logger = container.getLogger();
 
@@ -21,10 +24,16 @@ public class StorageNode extends Verticle {
 		
 		server.connectHandler(new Handler<NetSocket>() {
 			public void handle(final NetSocket socket) {
-				//Pump.createPump(socket, socket).start();
+//				Pump.createPump(socket, socket).start();
 				socket.dataHandler(new Handler<Buffer>(){
 					public void handle(Buffer buffer){
-						logger.info("got " + buffer.length() + " bytes");
+					//test in cmd
+						try {
+							logger.info("got: " + Cmd.parseFrom(buffer.getBytes()).toString());
+						} catch (InvalidProtocolBufferException e) {
+							// TODO Auto-generated catch block
+							logger.error(e);
+						}						
 					}
 				});
 			}
