@@ -30,6 +30,13 @@ public class StorageNode extends Verticle {
 					//test in cmd
 						try {
 							logger.info("got: " + Cmd.parseFrom(buffer.getBytes()).toString());
+							//write back ACK
+							Cmd.Builder ack = Cmd.newBuilder();
+							ack.setId(1);
+							ack.setName("I am a Snode");
+							ack.setType(Cmd.CmdType.CONTROL);
+							ack.setDbgString("test ACK from snode");
+							socket.write(new Buffer(ack.build().toByteArray()));
 						} catch (InvalidProtocolBufferException e) {
 							// TODO Auto-generated catch block
 							logger.error(e);

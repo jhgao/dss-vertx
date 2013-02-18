@@ -14,7 +14,7 @@ message Cmd {
     CONTROL = 1;
     HEARTBEAT = 2;
   }
-  required CmdType type = 4;
+  required CmdType type = 4 [default = CONTROL];
 
   message Argument {
     optional string aString = 1;

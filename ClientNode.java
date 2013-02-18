@@ -5,6 +5,8 @@ import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.core.net.*;
 import org.vertx.java.deploy.Verticle;
 
+import com.google.protobuf.InvalidProtocolBufferException;
+
 import sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd;
 
 public class ClientNode extends Verticle {
@@ -31,7 +33,22 @@ public class ClientNode extends Verticle {
 		cmdclt.connect(snode_cmd_port, snode_ip, new Handler<NetSocket>() {
 			public void handle(NetSocket socket) {
 				logger.info("Cmd Connected");
-				// test out cmd
+				// add handler
+				socket.dataHandler(new Handler<Buffer>() {
+					public void handle(Buffer buffer) {
+						// test in ACK
+						try {
+							logger.info("got: "
+									+ Cmd.parseFrom(buffer.getBytes())
+											.toString());
+						} catch (InvalidProtocolBufferException e) {
+							// TODO Auto-generated catch block
+							logger.error(e);
+						}
+					}
+				});
+
+				// test out command
 				Cmd.Builder cmd = Cmd.newBuilder();
 				cmd.setId(0);
 				cmd.setName("TEST_CMD");

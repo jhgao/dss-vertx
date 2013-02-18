@@ -23,7 +23,7 @@ public final class CmdProtocol {
     boolean hasDbgString();
     String getDbgString();
     
-    // required .sg.sutd.dss.protocol.cmd.Cmd.CmdType type = 4;
+    // required .sg.sutd.dss.protocol.cmd.Cmd.CmdType type = 4 [default = CONTROL];
     boolean hasType();
     sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType getType();
   }
@@ -634,7 +634,7 @@ public final class CmdProtocol {
       }
     }
     
-    // required .sg.sutd.dss.protocol.cmd.Cmd.CmdType type = 4;
+    // required .sg.sutd.dss.protocol.cmd.Cmd.CmdType type = 4 [default = CONTROL];
     public static final int TYPE_FIELD_NUMBER = 4;
     private sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType type_;
     public boolean hasType() {
@@ -648,7 +648,7 @@ public final class CmdProtocol {
       name_ = "";
       id_ = 0;
       dbgString_ = "";
-      type_ = sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType.STORAGE;
+      type_ = sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType.CONTROL;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -841,7 +841,7 @@ public final class CmdProtocol {
         bitField0_ = (bitField0_ & ~0x00000002);
         dbgString_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        type_ = sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType.STORAGE;
+        type_ = sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType.CONTROL;
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
@@ -1093,8 +1093,8 @@ public final class CmdProtocol {
         onChanged();
       }
       
-      // required .sg.sutd.dss.protocol.cmd.Cmd.CmdType type = 4;
-      private sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType type_ = sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType.STORAGE;
+      // required .sg.sutd.dss.protocol.cmd.Cmd.CmdType type = 4 [default = CONTROL];
+      private sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType type_ = sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType.CONTROL;
       public boolean hasType() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
@@ -1112,7 +1112,7 @@ public final class CmdProtocol {
       }
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        type_ = sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType.STORAGE;
+        type_ = sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd.CmdType.CONTROL;
         onChanged();
         return this;
       }
@@ -1716,14 +1716,15 @@ public final class CmdProtocol {
   static {
     java.lang.String[] descriptorData = {
       "\n\021CmdProtocol.proto\022\030sg.sutd.dss.protoco" +
-      "l.cmd\"\313\001\n\003Cmd\022\014\n\004name\030\001 \002(\t\022\n\n\002id\030\002 \002(\005\022" +
-      "\021\n\tdbgString\030\003 \001(\t\0223\n\004type\030\004 \002(\0162%.sg.su" +
-      "td.dss.protocol.cmd.Cmd.CmdType\032.\n\010Argum" +
-      "ent\022\017\n\007aString\030\001 \001(\t\022\021\n\006aInt32\030\002 \001(\005:\0010\"" +
-      "2\n\007CmdType\022\013\n\007STORAGE\020\000\022\013\n\007CONTROL\020\001\022\r\n\t" +
-      "HEARTBEAT\020\002\"9\n\007CmdList\022.\n\007command\030\001 \003(\0132" +
-      "\035.sg.sutd.dss.protocol.cmd.CmdB+\n\034sg.edu" +
-      ".sutd.dss.protocol.cmdB\013CmdProtocol"
+      "l.cmd\"\324\001\n\003Cmd\022\014\n\004name\030\001 \002(\t\022\n\n\002id\030\002 \002(\005\022" +
+      "\021\n\tdbgString\030\003 \001(\t\022<\n\004type\030\004 \002(\0162%.sg.su" +
+      "td.dss.protocol.cmd.Cmd.CmdType:\007CONTROL" +
+      "\032.\n\010Argument\022\017\n\007aString\030\001 \001(\t\022\021\n\006aInt32\030" +
+      "\002 \001(\005:\0010\"2\n\007CmdType\022\013\n\007STORAGE\020\000\022\013\n\007CONT" +
+      "ROL\020\001\022\r\n\tHEARTBEAT\020\002\"9\n\007CmdList\022.\n\007comma" +
+      "nd\030\001 \003(\0132\035.sg.sutd.dss.protocol.cmd.CmdB" +
+      "+\n\034sg.edu.sutd.dss.protocol.cmdB\013CmdProt" +
+      "ocol"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
