@@ -1,3 +1,8 @@
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.vertx.java.core.logging.Logger;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.buffer.Buffer;
@@ -25,21 +30,28 @@ public class StorageNode extends Verticle {
 		server.connectHandler(new Handler<NetSocket>() {
 			public void handle(final NetSocket socket) {
 //				Pump.createPump(socket, socket).start();
+				logger.info("some one connected");
 				socket.dataHandler(new Handler<Buffer>(){
 					public void handle(Buffer buffer){
 					//test in cmd
 						try {
-							logger.info("got: " + Cmd.parseFrom(buffer.getBytes()).toString());
+							logger.info("got: " + Cmd.parseDelimitedFrom(new ByteArrayInputStream(buffer.getBytes())).toString());
 							//write back ACK
 							Cmd.Builder ack = Cmd.newBuilder();
 							ack.setId(1);
-							ack.setName("I am a Snode");
+							ack.setName("Done");
 							ack.setType(Cmd.CmdType.CONTROL);
 							ack.setDbgString("test ACK from snode");
-							socket.write(new Buffer(ack.build().toByteArray()));
+							
+							ByteArrayOutputStream delimitedBytes = new ByteArrayOutputStream();
+							ack.build().writeDelimitedTo(delimitedBytes);
+							socket.write(new Buffer(delimitedBytes.toByteArray()));
 						} catch (InvalidProtocolBufferException e) {
 							// TODO Auto-generated catch block
 							logger.error(e);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+//							e.printStackTrace();
 						}						
 					}
 				});
