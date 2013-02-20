@@ -1,10 +1,14 @@
 load('vertx.js')
 
+function loginfo(str){
+	logger.info("[snode-starter.js] " + str);
+}
+
 var logger = vertx.logger;
-logger.info("[starter.js] start storage node ...");
+loginfo("start storage node ...");
 
 var config = vertx.config;
-logger.info("[starter.js] Config is " + JSON.stringify(config));
+loginfo("Config is " + JSON.stringify(config));
 
 
 // Application config
@@ -15,12 +19,20 @@ var appConfig = {
     },
     block_server_conf : {
         "port_default": 6789 
-    }
+    },
+	heart_beater_conf: {
+	"controller_addr" : "localhost",
+	"controller_port" : 5000
+	}
 }
 
 // Start the verticles that make up the app
-var deploymentdID = vertx.deployVerticle("StorageNode",appConfig.command_server_conf,4,function(){
-		logger.info("[starter.js] StorageNode deployed");
+var deployID_snode = vertx.deployVerticle("StorageNode",appConfig.command_server_conf,4,function(){
+		loginfo("StorageNode deployed");
+});
+
+var deployID_heartbeater = vertx.deployVerticle("HeartBeater",appConfig.heart_beater_conf,1,function(){
+		loginfo("HeartBeater deployed");
 });
 
 //vertx.undeployVerticle(did);
