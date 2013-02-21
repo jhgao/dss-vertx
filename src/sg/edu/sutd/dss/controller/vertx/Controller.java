@@ -1,27 +1,30 @@
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+package sg.edu.sutd.dss.controller.vertx;
 
-import org.vertx.java.core.logging.Logger;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.buffer.Buffer;
 import org.vertx.java.core.json.JsonObject;
-import org.vertx.java.core.net.*;
+import org.vertx.java.core.logging.Logger;
+import org.vertx.java.core.net.NetServer;
+import org.vertx.java.core.net.NetSocket;
 import org.vertx.java.deploy.Verticle;
-
-import com.google.protobuf.*;
 
 import sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd;
 
-public class StorageNode extends Verticle {
+import com.google.protobuf.InvalidProtocolBufferException;
+
+public class Controller extends Verticle {
 	public void start() { 
 		// log
 		final Logger logger = container.getLogger();
 
 		// configuration
 		JsonObject config = container.getConfig();
-		logger.info("[StorageNode.java] config is " + config);
+		logger.info("[Controller.java] config is " + config);
 		int port_default = config.getNumber("port_default").intValue();
 
 		// server
@@ -30,24 +33,20 @@ public class StorageNode extends Verticle {
 		server.connectHandler(new Handler<NetSocket>() {
 			public void handle(final NetSocket socket) {
 //				Pump.createPump(socket, socket).start();
-				logger.info("some one connected");
 				socket.dataHandler(new Handler<Buffer>(){
 					public void handle(Buffer buffer){
 					//test in cmd
 						try {
-							logger.info("got: " + Cmd.parseDelimitedFrom(new ByteArrayInputStream(buffer.getBytes())).toString());
-							//write back ACK
-							Cmd.Builder ack = Cmd.newBuilder();
-							ack.setId(1);
-							ack.setName("Done");
-							ack.setType(Cmd.CmdType.CONTROL);
-							ack.setDbgString("test ACK from snode");
-							
-							ByteArrayOutputStream delimitedBytes = new ByteArrayOutputStream();
-							ack.build().writeDelimitedTo(delimitedBytes);
-							socket.write(new Buffer(delimitedBytes.toByteArray()));
+							Cmd incmd = Cmd.parseDelimitedFrom(new ByteArrayInputStream(buffer.getBytes()));
+							if(incmd.getName().equals("HEART_BEAT")){
+							logger.info(incmd.toString());
+							socket.close();
+							}
+							if(incmd.getType().equals(Cmd.CmdType.HEARTBEAT)){
+								logger.info("[>>Heart Beat]" + currentTimeString());
+							}
 						} catch (InvalidProtocolBufferException e) {
-							// TODO Auto-generated catch block
+							logger.error("Invalid cmd got.");
 							logger.error(e);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
@@ -61,4 +60,9 @@ public class StorageNode extends Verticle {
 		server.listen(port_default);
 	}
 
+	private String currentTimeString(){
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		return sdf.format(cal.getTime());
+	}
 }

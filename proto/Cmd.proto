@@ -1,29 +1,25 @@
 
-package sg.sutd.dss.protocol.cmd;
+package sg.sutd.dss.protocol;
 
-option java_package = "sg.edu.sutd.dss.protocol.cmd";
-option java_outer_classname = "CmdBuf";
+option java_package = "sg.edu.sutd.dss.protocol";
+option java_outer_classname = "Cmd";
 
-message CmdBuf {
+message Cmd {
 
-	enum CmdType {	//catigory
-	STORAGE = 0;
-	CONTROL = 1;
-	HEARTBEAT = 2;
+	enum Type {	//catigory
+		STORAGE = 0;
+		CONTROL = 1;
+		HEARTBEAT = 2;
 	}
 
 	required string name = 1;//human readable cmd name
 	required int32 id = 2;// Unique ID number for command.
 	optional string dbgString = 3;
-	required CmdType type = 4 [default = CONTROL];
+	required Type type = 4 [default = CONTROL];
 
 	message Argument {
 	optional string aString = 1;
 	optional int32 aInt32 = 2 [default = 0];
-	}
-
-	message SenderID{
-
 	}
 }
 
@@ -31,3 +27,4 @@ message CmdBuf {
 message CmdList {
 	repeated Cmd command = 1;
 }
+

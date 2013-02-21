@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dss.vertx" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+	<!-- set global properties for this build -->
+	<property name="src.dir" location="src" />
+	<property name="lib.dir" location="lib" />
+	<property name="vertx.lib.dir" location="/opt/vert.x-1.3.1.final/lib" />
+	
+	<property name="build.dir" location="build" />
+	<property name="dist.dir" location="dist" />
+	<property name="dist.lib.dir" location="dist/lib" />
+
+	<patternset id="pattern.only.jar">
+		<include name="**/*.jar" />
+		<exclude name="**/*javadoc*" />
+		<exclude name="**/*sources*" />
+	</patternset>
+
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}">
+			<patternset refid="pattern.only.jar" />
+		</fileset>
+		<fileset dir="${vertx.lib.dir}">
+			<patternset refid="pattern.only.jar" />
+		</fileset>
+	</path>
+
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}">
+			<patternset refid="pattern.only.jar" />
+		</fileset>
+	</path>
+	
+	<target name="init" description="mk buid dirs">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${lib.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${build.dir}" />
+	</target>
+	
+	<target name="compile" depends="init" description="compile the source ">
+		<!-- Compile the java code from ${src.dir} into ${build.dir} -->
+		<javac srcdir="${src.dir}" destdir="${build.dir}">
+			<classpath refid="project.classpath" />
+		</javac>
+	</target>
+	
+	<target name="clean" description="delete build">
+		<!-- Delete the ${build.dir} and ${dist.dir} directory trees -->
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+</project>
