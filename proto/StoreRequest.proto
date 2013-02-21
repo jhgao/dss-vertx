@@ -1,0 +1,26 @@
+
+package sg.sutd.dss.protocol;
+
+option java_package = "sg.edu.sutd.dss.protocol";
+option java_outer_classname = "SnodeProtoc";
+
+message StoreRequest {
+	required string userId = 1;	//TODO: user identity
+
+	message EncBlockDesc {
+		required string encBlockId = 1;	//encoded block id
+		optional string path = 2;	//if omitted, put to username/
+		required int32 size = 3;	//for storage node to estimate space occupation
+	}
+	required EncBlockDesc encBlockDesc = 2;
+
+	optional int32 reqSn = 3;		//request serial number
+}
+
+message StoreAck {
+	optional bool isApproved = 1;	//when save request is approved
+	optional bool isDone = 2;	//when transferred block saved
+
+	optional int32 reqSn = 3;		//declare pairing to a request
+}
+

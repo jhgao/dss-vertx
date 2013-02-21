@@ -1,6 +1,7 @@
 package sg.edu.sutd.dss.controller.vertx;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,12 +14,14 @@ import org.vertx.java.core.net.NetServer;
 import org.vertx.java.core.net.NetSocket;
 import org.vertx.java.deploy.Verticle;
 
-import sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd;
+import sg.edu.sutd.dss.protocol.HeartBeat.StatReport;
+import sg.edu.sutd.dss.protocol.HeartBeat.StatReportAck;
+import sg.edu.sutd.dss.protocol.HeartBeat.UserStoreStat;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
 public class Controller extends Verticle {
-	public void start() { 
+	public void start() {
 		// log
 		final Logger logger = container.getLogger();
 
@@ -29,38 +32,47 @@ public class Controller extends Verticle {
 
 		// server
 		NetServer server = vertx.createNetServer();
-		
+
 		server.connectHandler(new Handler<NetSocket>() {
 			public void handle(final NetSocket socket) {
-//				Pump.createPump(socket, socket).start();
-				socket.dataHandler(new Handler<Buffer>(){
-					public void handle(Buffer buffer){
-					//test in cmd
+				// Pump.createPump(socket, socket).start();
+				socket.dataHandler(new Handler<Buffer>() {
+					public void handle(Buffer buffer) {
+						// test heart beat
 						try {
-							Cmd incmd = Cmd.parseDelimitedFrom(new ByteArrayInputStream(buffer.getBytes()));
-							if(incmd.getName().equals("HEART_BEAT")){
-							logger.info(incmd.toString());
-							socket.close();
+							StatReport rp = StatReport
+									.parseDelimitedFrom(new ByteArrayInputStream(
+											buffer.getBytes()));
+							// storage node status
+							logger.info("[>>Heart Beat]" + currentTimeString());
+							logger.info(rp.toString());
+							
+							StatReportAck.Builder ack = StatReportAck.newBuilder();
+							UserStoreStat.Builder us = UserStoreStat.newBuilder();
+							for( int i = 0; i < 5; ++i){
+								us.setUserId("userId"+i);
+								us.setBlockCount(i);
+								ack.addUserStoreStat(us);
 							}
-							if(incmd.getType().equals(Cmd.CmdType.HEARTBEAT)){
-								logger.info("[>>Heart Beat]" + currentTimeString());
-							}
+							ByteArrayOutputStream delimitedBytes = new ByteArrayOutputStream();
+							ack.build().writeDelimitedTo(delimitedBytes);
+							socket.write(new Buffer(delimitedBytes.toByteArray()));
+							
 						} catch (InvalidProtocolBufferException e) {
-							logger.error("Invalid cmd got.");
+							logger.error("Invalid StatReport.");
 							logger.error(e);
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
-//							e.printStackTrace();
-						}						
+							e.printStackTrace();
+						}
 					}
 				});
 			}
 		});
-		
+
 		server.listen(port_default);
 	}
 
-	private String currentTimeString(){
+	private String currentTimeString() {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		return sdf.format(cal.getTime());

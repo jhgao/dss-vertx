@@ -1,0 +1,42 @@
+package sg.sutd.dss.protocol;
+
+option java_package = "sg.edu.sutd.dss.protocol";
+option java_outer_classname = "HeartBeat";
+
+message EncBlock {
+	required string path = 1;
+	required string id = 2;
+	optional int32 size = 3;
+
+	enum BlockStat {
+		GOOD = 1;
+		DELETED = 2;
+	}
+	optional BlockStat stat = 4;
+}
+
+message UserStoreStat {
+	required string userId = 1;
+	optional int32 blockCount = 2;
+	repeated EncBlock encBlock = 3;
+}
+
+message StatReport {
+	required string snodeId = 1;	//TODO: snode identity
+
+	optional int32 sn = 2;		//heart beat serial number
+
+	message StorageStat {
+		required int64 totalSpace = 1;
+		required int64 freeSpace = 2;
+		optional int64 upTime = 3;
+	}
+	required StorageStat stat = 3;
+
+	repeated UserStoreStat userStoreStat = 4;
+}
+
+message StatReportAck {
+	repeated UserStoreStat userStoreStat = 1;
+}
+

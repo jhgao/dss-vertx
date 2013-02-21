@@ -2,12 +2,14 @@
 <project name="dss.vertx" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 	<!-- set global properties for this build -->
 	<property name="src.dir" location="src" />
-	<property name="lib.dir" location="lib" />
-	<property name="vertx.lib.dir" location="/opt/vert.x-1.3.1.final/lib" />
-	
+	<property name="lib.dir" location="lib" />	
 	<property name="build.dir" location="build" />
 	<property name="dist.dir" location="dist" />
 	<property name="dist.lib.dir" location="dist/lib" />
+	
+	<!-- vertx install dir -->
+	<property name="vertx.dir" location="/opt/vert.x-1.3.1.final" />
+	<property name="vertx.lib.dir" location="${vertx.dir}/lib" />
 
 	<patternset id="pattern.only.jar">
 		<include name="**/*.jar" />

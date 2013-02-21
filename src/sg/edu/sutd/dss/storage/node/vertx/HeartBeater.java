@@ -1,5 +1,6 @@
 package sg.edu.sutd.dss.storage.node.vertx;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -13,15 +14,16 @@ import org.vertx.java.core.net.NetClient;
 import org.vertx.java.core.net.NetSocket;
 import org.vertx.java.deploy.Verticle;
 
+import sg.edu.sutd.dss.protocol.HeartBeat.StatReport;
+import sg.edu.sutd.dss.protocol.HeartBeat.StatReportAck;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd;
-
 public class HeartBeater extends Verticle {
-	private Logger logger;	//log
+	private Logger logger; // log
 	private String conAddr;
 	private int conPort;
-	
+
 	@Override
 	public void start() throws Exception {
 		// logger
@@ -31,15 +33,15 @@ public class HeartBeater extends Verticle {
 		JsonObject config = container.getConfig();
 		conAddr = config.getString("controller_addr");
 		conPort = config.getNumber("controller_port").intValue();
-		
+
 		logger.info("[HeartBeater.java] config is " + config);
 
 		// periodically send heart beat
-		long timerID = vertx.setPeriodic(5000, new Handler<Long>() {
-			public void handle(Long timerID) {
-				doHeartBeat();
-			}
-		});
+		vertx.setPeriodic(5000, new Handler<Long>() { // long TimerId
+					public void handle(Long timerID) {
+						doHeartBeat();
+					}
+				});
 	}
 
 	private void doHeartBeat() {
@@ -57,27 +59,29 @@ public class HeartBeater extends Verticle {
 				// add handler
 				socket.dataHandler(new Handler<Buffer>() {
 					public void handle(Buffer buffer) {
+						ByteArrayInputStream in = new ByteArrayInputStream(
+								buffer.getBytes());
 						// test in ACK
 						try {
-							logger.info("heart beat ACK: "
-									+ Cmd.parseFrom(buffer.getBytes())
-											.toString());
+							StatReportAck ack = StatReportAck
+									.parseDelimitedFrom(in);
+							logger.info("heart beat ACK: " + ack.toString());
 						} catch (InvalidProtocolBufferException e) {
-							// TODO Auto-generated catch block
+							logger.error(e);
+						} catch (IOException e) {
 							logger.error(e);
 						}
 					}
 				});
 
 				try {
-					Cmd.Builder hb = Cmd.newBuilder();
-					hb.setId(5);
-					hb.setName("HEART_BEAT");
-					hb.setType(Cmd.CmdType.HEARTBEAT);
-					hb.setDbgString("test Heart Beat from snode");
+					StatReport.Builder rp = StatReport.newBuilder();
+					rp.setSnodeId("snodeIdTest0x002").setStat(
+							rp.getStat().toBuilder().setTotalSpace(5600)
+									.setFreeSpace(3000));
 
 					ByteArrayOutputStream delimitedBytes = new ByteArrayOutputStream();
-					hb.build().writeDelimitedTo(delimitedBytes);
+					rp.build().writeDelimitedTo(delimitedBytes);
 					socket.write(new Buffer(delimitedBytes.toByteArray()));
 					logger.info("Heart Beat sent. " + currentTimeString());
 				} catch (IOException e) {
@@ -87,8 +91,8 @@ public class HeartBeater extends Verticle {
 			}
 		});
 	}
-	
-	private String currentTimeString(){
+
+	private String currentTimeString() {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		return sdf.format(cal.getTime());

@@ -12,7 +12,8 @@ import org.vertx.java.core.net.NetServer;
 import org.vertx.java.core.net.NetSocket;
 import org.vertx.java.deploy.Verticle;
 
-import sg.edu.sutd.dss.protocol.cmd.CmdProtocol.Cmd;
+import sg.edu.sutd.dss.protocol.SnodeProtoc.StoreAck;
+import sg.edu.sutd.dss.protocol.SnodeProtoc.StoreRequest;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -35,18 +36,17 @@ public class StorageNode extends Verticle {
 				logger.info("some one connected");
 				socket.dataHandler(new Handler<Buffer>() {
 					public void handle(Buffer buffer) {
-						// test in cmd
+						// test request command
 						try {
+							StoreRequest req = StoreRequest.parseDelimitedFrom(
+									new ByteArrayInputStream(buffer
+											.getBytes()));
 							logger.info("got: "
-									+ Cmd.parseDelimitedFrom(
-											new ByteArrayInputStream(buffer
-													.getBytes())).toString());
+									+ req.toString());
 							// write back ACK
-							Cmd.Builder ack = Cmd.newBuilder();
-							ack.setId(1);
-							ack.setName("Done");
-							ack.setType(Cmd.CmdType.CONTROL);
-							ack.setDbgString("test ACK from snode");
+							StoreAck.Builder ack = StoreAck.newBuilder();
+							ack.setReqSn(req.getReqSn());
+							ack.setIsApproved(true);
 
 							ByteArrayOutputStream delimitedBytes = new ByteArrayOutputStream();
 							ack.build().writeDelimitedTo(delimitedBytes);
