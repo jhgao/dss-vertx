@@ -55,7 +55,7 @@ public class HeartBeater extends Verticle {
 		});
 
 		hbskt.connect(conPort, conAddr, new Handler<NetSocket>() {
-			public void handle(NetSocket socket) {
+			public void handle(final NetSocket socket) {
 				// add handler
 				socket.dataHandler(new Handler<Buffer>() {
 					public void handle(Buffer buffer) {
@@ -65,11 +65,13 @@ public class HeartBeater extends Verticle {
 						try {
 							StatReportAck ack = StatReportAck
 									.parseDelimitedFrom(in);
-							logger.info("heart beat ACK: " + ack.toString());
+//							logger.info("heart beat ACK. " + ack.toString());
 						} catch (InvalidProtocolBufferException e) {
 							logger.error(e);
 						} catch (IOException e) {
 							logger.error(e);
+						} finally {
+							socket.close();
 						}
 					}
 				});
@@ -83,7 +85,7 @@ public class HeartBeater extends Verticle {
 					ByteArrayOutputStream delimitedBytes = new ByteArrayOutputStream();
 					rp.build().writeDelimitedTo(delimitedBytes);
 					socket.write(new Buffer(delimitedBytes.toByteArray()));
-					logger.info("Heart Beat sent. " + currentTimeString());
+//					logger.info("Heart Beat sent. " + currentTimeString());
 				} catch (IOException e) {
 					logger.info("faild send Heart Beat");
 					e.printStackTrace();

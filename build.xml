@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="dss.vertx" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="dss-vertx" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 	<!-- set global properties for this build -->
 	<property name="src.dir" location="src" />
 	<property name="lib.dir" location="lib" />	
