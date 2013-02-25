@@ -21,18 +21,16 @@ message UserStoreStat {
 	repeated EncBlock encBlock = 3;
 }
 
+message StorageStat {
+	required int64 totalSpace = 1;
+	required int64 freeSpace = 2;
+	optional int64 upTime = 3;
+}
+
 message StatReport {
 	required string snodeId = 1;	//TODO: snode identity
-
 	optional int32 sn = 2;		//heart beat serial number
-
-	message StorageStat {
-		required int64 totalSpace = 1;
-		required int64 freeSpace = 2;
-		optional int64 upTime = 3;
-	}
 	required StorageStat stat = 3;
-
 	repeated UserStoreStat userStoreStat = 4;
 }
 

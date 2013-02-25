@@ -1410,6 +1410,474 @@ public final class HeartBeat {
     // @@protoc_insertion_point(class_scope:sg.sutd.dss.protocol.UserStoreStat)
   }
   
+  public interface StorageStatOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required int64 totalSpace = 1;
+    boolean hasTotalSpace();
+    long getTotalSpace();
+    
+    // required int64 freeSpace = 2;
+    boolean hasFreeSpace();
+    long getFreeSpace();
+    
+    // optional int64 upTime = 3;
+    boolean hasUpTime();
+    long getUpTime();
+  }
+  public static final class StorageStat extends
+      com.google.protobuf.GeneratedMessage
+      implements StorageStatOrBuilder {
+    // Use StorageStat.newBuilder() to construct.
+    private StorageStat(Builder builder) {
+      super(builder);
+    }
+    private StorageStat(boolean noInit) {}
+    
+    private static final StorageStat defaultInstance;
+    public static StorageStat getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public StorageStat getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return sg.edu.sutd.dss.protocol.HeartBeat.internal_static_sg_sutd_dss_protocol_StorageStat_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return sg.edu.sutd.dss.protocol.HeartBeat.internal_static_sg_sutd_dss_protocol_StorageStat_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required int64 totalSpace = 1;
+    public static final int TOTALSPACE_FIELD_NUMBER = 1;
+    private long totalSpace_;
+    public boolean hasTotalSpace() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getTotalSpace() {
+      return totalSpace_;
+    }
+    
+    // required int64 freeSpace = 2;
+    public static final int FREESPACE_FIELD_NUMBER = 2;
+    private long freeSpace_;
+    public boolean hasFreeSpace() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public long getFreeSpace() {
+      return freeSpace_;
+    }
+    
+    // optional int64 upTime = 3;
+    public static final int UPTIME_FIELD_NUMBER = 3;
+    private long upTime_;
+    public boolean hasUpTime() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public long getUpTime() {
+      return upTime_;
+    }
+    
+    private void initFields() {
+      totalSpace_ = 0L;
+      freeSpace_ = 0L;
+      upTime_ = 0L;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasTotalSpace()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasFreeSpace()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt64(1, totalSpace_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt64(2, freeSpace_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt64(3, upTime_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, totalSpace_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, freeSpace_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, upTime_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static sg.edu.sutd.dss.protocol.HeartBeat.StorageStat parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(sg.edu.sutd.dss.protocol.HeartBeat.StorageStat prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements sg.edu.sutd.dss.protocol.HeartBeat.StorageStatOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return sg.edu.sutd.dss.protocol.HeartBeat.internal_static_sg_sutd_dss_protocol_StorageStat_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return sg.edu.sutd.dss.protocol.HeartBeat.internal_static_sg_sutd_dss_protocol_StorageStat_fieldAccessorTable;
+      }
+      
+      // Construct using sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        totalSpace_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        freeSpace_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        upTime_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.getDescriptor();
+      }
+      
+      public sg.edu.sutd.dss.protocol.HeartBeat.StorageStat getDefaultInstanceForType() {
+        return sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.getDefaultInstance();
+      }
+      
+      public sg.edu.sutd.dss.protocol.HeartBeat.StorageStat build() {
+        sg.edu.sutd.dss.protocol.HeartBeat.StorageStat result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private sg.edu.sutd.dss.protocol.HeartBeat.StorageStat buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        sg.edu.sutd.dss.protocol.HeartBeat.StorageStat result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public sg.edu.sutd.dss.protocol.HeartBeat.StorageStat buildPartial() {
+        sg.edu.sutd.dss.protocol.HeartBeat.StorageStat result = new sg.edu.sutd.dss.protocol.HeartBeat.StorageStat(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.totalSpace_ = totalSpace_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.freeSpace_ = freeSpace_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.upTime_ = upTime_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof sg.edu.sutd.dss.protocol.HeartBeat.StorageStat) {
+          return mergeFrom((sg.edu.sutd.dss.protocol.HeartBeat.StorageStat)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(sg.edu.sutd.dss.protocol.HeartBeat.StorageStat other) {
+        if (other == sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.getDefaultInstance()) return this;
+        if (other.hasTotalSpace()) {
+          setTotalSpace(other.getTotalSpace());
+        }
+        if (other.hasFreeSpace()) {
+          setFreeSpace(other.getFreeSpace());
+        }
+        if (other.hasUpTime()) {
+          setUpTime(other.getUpTime());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasTotalSpace()) {
+          
+          return false;
+        }
+        if (!hasFreeSpace()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              totalSpace_ = input.readInt64();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              freeSpace_ = input.readInt64();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              upTime_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required int64 totalSpace = 1;
+      private long totalSpace_ ;
+      public boolean hasTotalSpace() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getTotalSpace() {
+        return totalSpace_;
+      }
+      public Builder setTotalSpace(long value) {
+        bitField0_ |= 0x00000001;
+        totalSpace_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTotalSpace() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        totalSpace_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // required int64 freeSpace = 2;
+      private long freeSpace_ ;
+      public boolean hasFreeSpace() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public long getFreeSpace() {
+        return freeSpace_;
+      }
+      public Builder setFreeSpace(long value) {
+        bitField0_ |= 0x00000002;
+        freeSpace_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFreeSpace() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        freeSpace_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 upTime = 3;
+      private long upTime_ ;
+      public boolean hasUpTime() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public long getUpTime() {
+        return upTime_;
+      }
+      public Builder setUpTime(long value) {
+        bitField0_ |= 0x00000004;
+        upTime_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUpTime() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        upTime_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:sg.sutd.dss.protocol.StorageStat)
+    }
+    
+    static {
+      defaultInstance = new StorageStat(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:sg.sutd.dss.protocol.StorageStat)
+  }
+  
   public interface StatReportOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -1421,10 +1889,10 @@ public final class HeartBeat {
     boolean hasSn();
     int getSn();
     
-    // required .sg.sutd.dss.protocol.StatReport.StorageStat stat = 3;
+    // required .sg.sutd.dss.protocol.StorageStat stat = 3;
     boolean hasStat();
-    sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat getStat();
-    sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStatOrBuilder getStatOrBuilder();
+    sg.edu.sutd.dss.protocol.HeartBeat.StorageStat getStat();
+    sg.edu.sutd.dss.protocol.HeartBeat.StorageStatOrBuilder getStatOrBuilder();
     
     // repeated .sg.sutd.dss.protocol.UserStoreStat userStoreStat = 4;
     java.util.List<sg.edu.sutd.dss.protocol.HeartBeat.UserStoreStat> 
@@ -1462,474 +1930,6 @@ public final class HeartBeat {
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return sg.edu.sutd.dss.protocol.HeartBeat.internal_static_sg_sutd_dss_protocol_StatReport_fieldAccessorTable;
-    }
-    
-    public interface StorageStatOrBuilder
-        extends com.google.protobuf.MessageOrBuilder {
-      
-      // required int64 totalSpace = 1;
-      boolean hasTotalSpace();
-      long getTotalSpace();
-      
-      // required int64 freeSpace = 2;
-      boolean hasFreeSpace();
-      long getFreeSpace();
-      
-      // optional int64 upTime = 3;
-      boolean hasUpTime();
-      long getUpTime();
-    }
-    public static final class StorageStat extends
-        com.google.protobuf.GeneratedMessage
-        implements StorageStatOrBuilder {
-      // Use StorageStat.newBuilder() to construct.
-      private StorageStat(Builder builder) {
-        super(builder);
-      }
-      private StorageStat(boolean noInit) {}
-      
-      private static final StorageStat defaultInstance;
-      public static StorageStat getDefaultInstance() {
-        return defaultInstance;
-      }
-      
-      public StorageStat getDefaultInstanceForType() {
-        return defaultInstance;
-      }
-      
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return sg.edu.sutd.dss.protocol.HeartBeat.internal_static_sg_sutd_dss_protocol_StatReport_StorageStat_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return sg.edu.sutd.dss.protocol.HeartBeat.internal_static_sg_sutd_dss_protocol_StatReport_StorageStat_fieldAccessorTable;
-      }
-      
-      private int bitField0_;
-      // required int64 totalSpace = 1;
-      public static final int TOTALSPACE_FIELD_NUMBER = 1;
-      private long totalSpace_;
-      public boolean hasTotalSpace() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public long getTotalSpace() {
-        return totalSpace_;
-      }
-      
-      // required int64 freeSpace = 2;
-      public static final int FREESPACE_FIELD_NUMBER = 2;
-      private long freeSpace_;
-      public boolean hasFreeSpace() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public long getFreeSpace() {
-        return freeSpace_;
-      }
-      
-      // optional int64 upTime = 3;
-      public static final int UPTIME_FIELD_NUMBER = 3;
-      private long upTime_;
-      public boolean hasUpTime() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public long getUpTime() {
-        return upTime_;
-      }
-      
-      private void initFields() {
-        totalSpace_ = 0L;
-        freeSpace_ = 0L;
-        upTime_ = 0L;
-      }
-      private byte memoizedIsInitialized = -1;
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized != -1) return isInitialized == 1;
-        
-        if (!hasTotalSpace()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-        if (!hasFreeSpace()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-        memoizedIsInitialized = 1;
-        return true;
-      }
-      
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        getSerializedSize();
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          output.writeInt64(1, totalSpace_);
-        }
-        if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          output.writeInt64(2, freeSpace_);
-        }
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          output.writeInt64(3, upTime_);
-        }
-        getUnknownFields().writeTo(output);
-      }
-      
-      private int memoizedSerializedSize = -1;
-      public int getSerializedSize() {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-      
-        size = 0;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(1, totalSpace_);
-        }
-        if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(2, freeSpace_);
-        }
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(3, upTime_);
-        }
-        size += getUnknownFields().getSerializedSize();
-        memoizedSerializedSize = size;
-        return size;
-      }
-      
-      private static final long serialVersionUID = 0L;
-      @java.lang.Override
-      protected java.lang.Object writeReplace()
-          throws java.io.ObjectStreamException {
-        return super.writeReplace();
-      }
-      
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data).buildParsed();
-      }
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data, extensionRegistry)
-                 .buildParsed();
-      }
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data).buildParsed();
-      }
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return newBuilder().mergeFrom(data, extensionRegistry)
-                 .buildParsed();
-      }
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return newBuilder().mergeFrom(input).buildParsed();
-      }
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return newBuilder().mergeFrom(input, extensionRegistry)
-                 .buildParsed();
-      }
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        Builder builder = newBuilder();
-        if (builder.mergeDelimitedFrom(input)) {
-          return builder.buildParsed();
-        } else {
-          return null;
-        }
-      }
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Builder builder = newBuilder();
-        if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-          return builder.buildParsed();
-        } else {
-          return null;
-        }
-      }
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return newBuilder().mergeFrom(input).buildParsed();
-      }
-      public static sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return newBuilder().mergeFrom(input, extensionRegistry)
-                 .buildParsed();
-      }
-      
-      public static Builder newBuilder() { return Builder.create(); }
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder(sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat prototype) {
-        return newBuilder().mergeFrom(prototype);
-      }
-      public Builder toBuilder() { return newBuilder(this); }
-      
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessage.Builder<Builder>
-         implements sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStatOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return sg.edu.sutd.dss.protocol.HeartBeat.internal_static_sg_sutd_dss_protocol_StatReport_StorageStat_descriptor;
-        }
-        
-        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return sg.edu.sutd.dss.protocol.HeartBeat.internal_static_sg_sutd_dss_protocol_StatReport_StorageStat_fieldAccessorTable;
-        }
-        
-        // Construct using sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-        
-        private Builder(BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          }
-        }
-        private static Builder create() {
-          return new Builder();
-        }
-        
-        public Builder clear() {
-          super.clear();
-          totalSpace_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000001);
-          freeSpace_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000002);
-          upTime_ = 0L;
-          bitField0_ = (bitField0_ & ~0x00000004);
-          return this;
-        }
-        
-        public Builder clone() {
-          return create().mergeFrom(buildPartial());
-        }
-        
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.getDescriptor();
-        }
-        
-        public sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat getDefaultInstanceForType() {
-          return sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.getDefaultInstance();
-        }
-        
-        public sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat build() {
-          sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-        
-        private sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat buildParsed()
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(
-              result).asInvalidProtocolBufferException();
-          }
-          return result;
-        }
-        
-        public sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat buildPartial() {
-          sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat result = new sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat(this);
-          int from_bitField0_ = bitField0_;
-          int to_bitField0_ = 0;
-          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-            to_bitField0_ |= 0x00000001;
-          }
-          result.totalSpace_ = totalSpace_;
-          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-            to_bitField0_ |= 0x00000002;
-          }
-          result.freeSpace_ = freeSpace_;
-          if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-            to_bitField0_ |= 0x00000004;
-          }
-          result.upTime_ = upTime_;
-          result.bitField0_ = to_bitField0_;
-          onBuilt();
-          return result;
-        }
-        
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat) {
-            return mergeFrom((sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-        
-        public Builder mergeFrom(sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat other) {
-          if (other == sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.getDefaultInstance()) return this;
-          if (other.hasTotalSpace()) {
-            setTotalSpace(other.getTotalSpace());
-          }
-          if (other.hasFreeSpace()) {
-            setFreeSpace(other.getFreeSpace());
-          }
-          if (other.hasUpTime()) {
-            setUpTime(other.getUpTime());
-          }
-          this.mergeUnknownFields(other.getUnknownFields());
-          return this;
-        }
-        
-        public final boolean isInitialized() {
-          if (!hasTotalSpace()) {
-            
-            return false;
-          }
-          if (!hasFreeSpace()) {
-            
-            return false;
-          }
-          return true;
-        }
-        
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder(
-              this.getUnknownFields());
-          while (true) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              default: {
-                if (!parseUnknownField(input, unknownFields,
-                                       extensionRegistry, tag)) {
-                  this.setUnknownFields(unknownFields.build());
-                  onChanged();
-                  return this;
-                }
-                break;
-              }
-              case 8: {
-                bitField0_ |= 0x00000001;
-                totalSpace_ = input.readInt64();
-                break;
-              }
-              case 16: {
-                bitField0_ |= 0x00000002;
-                freeSpace_ = input.readInt64();
-                break;
-              }
-              case 24: {
-                bitField0_ |= 0x00000004;
-                upTime_ = input.readInt64();
-                break;
-              }
-            }
-          }
-        }
-        
-        private int bitField0_;
-        
-        // required int64 totalSpace = 1;
-        private long totalSpace_ ;
-        public boolean hasTotalSpace() {
-          return ((bitField0_ & 0x00000001) == 0x00000001);
-        }
-        public long getTotalSpace() {
-          return totalSpace_;
-        }
-        public Builder setTotalSpace(long value) {
-          bitField0_ |= 0x00000001;
-          totalSpace_ = value;
-          onChanged();
-          return this;
-        }
-        public Builder clearTotalSpace() {
-          bitField0_ = (bitField0_ & ~0x00000001);
-          totalSpace_ = 0L;
-          onChanged();
-          return this;
-        }
-        
-        // required int64 freeSpace = 2;
-        private long freeSpace_ ;
-        public boolean hasFreeSpace() {
-          return ((bitField0_ & 0x00000002) == 0x00000002);
-        }
-        public long getFreeSpace() {
-          return freeSpace_;
-        }
-        public Builder setFreeSpace(long value) {
-          bitField0_ |= 0x00000002;
-          freeSpace_ = value;
-          onChanged();
-          return this;
-        }
-        public Builder clearFreeSpace() {
-          bitField0_ = (bitField0_ & ~0x00000002);
-          freeSpace_ = 0L;
-          onChanged();
-          return this;
-        }
-        
-        // optional int64 upTime = 3;
-        private long upTime_ ;
-        public boolean hasUpTime() {
-          return ((bitField0_ & 0x00000004) == 0x00000004);
-        }
-        public long getUpTime() {
-          return upTime_;
-        }
-        public Builder setUpTime(long value) {
-          bitField0_ |= 0x00000004;
-          upTime_ = value;
-          onChanged();
-          return this;
-        }
-        public Builder clearUpTime() {
-          bitField0_ = (bitField0_ & ~0x00000004);
-          upTime_ = 0L;
-          onChanged();
-          return this;
-        }
-        
-        // @@protoc_insertion_point(builder_scope:sg.sutd.dss.protocol.StatReport.StorageStat)
-      }
-      
-      static {
-        defaultInstance = new StorageStat(true);
-        defaultInstance.initFields();
-      }
-      
-      // @@protoc_insertion_point(class_scope:sg.sutd.dss.protocol.StatReport.StorageStat)
     }
     
     private int bitField0_;
@@ -1975,16 +1975,16 @@ public final class HeartBeat {
       return sn_;
     }
     
-    // required .sg.sutd.dss.protocol.StatReport.StorageStat stat = 3;
+    // required .sg.sutd.dss.protocol.StorageStat stat = 3;
     public static final int STAT_FIELD_NUMBER = 3;
-    private sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat stat_;
+    private sg.edu.sutd.dss.protocol.HeartBeat.StorageStat stat_;
     public boolean hasStat() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat getStat() {
+    public sg.edu.sutd.dss.protocol.HeartBeat.StorageStat getStat() {
       return stat_;
     }
-    public sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStatOrBuilder getStatOrBuilder() {
+    public sg.edu.sutd.dss.protocol.HeartBeat.StorageStatOrBuilder getStatOrBuilder() {
       return stat_;
     }
     
@@ -2012,7 +2012,7 @@ public final class HeartBeat {
     private void initFields() {
       snodeId_ = "";
       sn_ = 0;
-      stat_ = sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.getDefaultInstance();
+      stat_ = sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.getDefaultInstance();
       userStoreStat_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
@@ -2213,7 +2213,7 @@ public final class HeartBeat {
         sn_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
         if (statBuilder_ == null) {
-          stat_ = sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.getDefaultInstance();
+          stat_ = sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.getDefaultInstance();
         } else {
           statBuilder_.clear();
         }
@@ -2398,7 +2398,7 @@ public final class HeartBeat {
               break;
             }
             case 26: {
-              sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.Builder subBuilder = sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.newBuilder();
+              sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.Builder subBuilder = sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.newBuilder();
               if (hasStat()) {
                 subBuilder.mergeFrom(getStat());
               }
@@ -2475,21 +2475,21 @@ public final class HeartBeat {
         return this;
       }
       
-      // required .sg.sutd.dss.protocol.StatReport.StorageStat stat = 3;
-      private sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat stat_ = sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.getDefaultInstance();
+      // required .sg.sutd.dss.protocol.StorageStat stat = 3;
+      private sg.edu.sutd.dss.protocol.HeartBeat.StorageStat stat_ = sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat, sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.Builder, sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStatOrBuilder> statBuilder_;
+          sg.edu.sutd.dss.protocol.HeartBeat.StorageStat, sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.Builder, sg.edu.sutd.dss.protocol.HeartBeat.StorageStatOrBuilder> statBuilder_;
       public boolean hasStat() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat getStat() {
+      public sg.edu.sutd.dss.protocol.HeartBeat.StorageStat getStat() {
         if (statBuilder_ == null) {
           return stat_;
         } else {
           return statBuilder_.getMessage();
         }
       }
-      public Builder setStat(sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat value) {
+      public Builder setStat(sg.edu.sutd.dss.protocol.HeartBeat.StorageStat value) {
         if (statBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2503,7 +2503,7 @@ public final class HeartBeat {
         return this;
       }
       public Builder setStat(
-          sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.Builder builderForValue) {
+          sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.Builder builderForValue) {
         if (statBuilder_ == null) {
           stat_ = builderForValue.build();
           onChanged();
@@ -2513,12 +2513,12 @@ public final class HeartBeat {
         bitField0_ |= 0x00000004;
         return this;
       }
-      public Builder mergeStat(sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat value) {
+      public Builder mergeStat(sg.edu.sutd.dss.protocol.HeartBeat.StorageStat value) {
         if (statBuilder_ == null) {
           if (((bitField0_ & 0x00000004) == 0x00000004) &&
-              stat_ != sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.getDefaultInstance()) {
+              stat_ != sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.getDefaultInstance()) {
             stat_ =
-              sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.newBuilder(stat_).mergeFrom(value).buildPartial();
+              sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.newBuilder(stat_).mergeFrom(value).buildPartial();
           } else {
             stat_ = value;
           }
@@ -2531,7 +2531,7 @@ public final class HeartBeat {
       }
       public Builder clearStat() {
         if (statBuilder_ == null) {
-          stat_ = sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.getDefaultInstance();
+          stat_ = sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.getDefaultInstance();
           onChanged();
         } else {
           statBuilder_.clear();
@@ -2539,12 +2539,12 @@ public final class HeartBeat {
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-      public sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.Builder getStatBuilder() {
+      public sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.Builder getStatBuilder() {
         bitField0_ |= 0x00000004;
         onChanged();
         return getStatFieldBuilder().getBuilder();
       }
-      public sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStatOrBuilder getStatOrBuilder() {
+      public sg.edu.sutd.dss.protocol.HeartBeat.StorageStatOrBuilder getStatOrBuilder() {
         if (statBuilder_ != null) {
           return statBuilder_.getMessageOrBuilder();
         } else {
@@ -2552,11 +2552,11 @@ public final class HeartBeat {
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
-          sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat, sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.Builder, sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStatOrBuilder> 
+          sg.edu.sutd.dss.protocol.HeartBeat.StorageStat, sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.Builder, sg.edu.sutd.dss.protocol.HeartBeat.StorageStatOrBuilder> 
           getStatFieldBuilder() {
         if (statBuilder_ == null) {
           statBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat, sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.Builder, sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStatOrBuilder>(
+              sg.edu.sutd.dss.protocol.HeartBeat.StorageStat, sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.Builder, sg.edu.sutd.dss.protocol.HeartBeat.StorageStatOrBuilder>(
                   stat_,
                   getParentForChildren(),
                   isClean());
@@ -3336,15 +3336,15 @@ public final class HeartBeat {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_sg_sutd_dss_protocol_UserStoreStat_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_sg_sutd_dss_protocol_StorageStat_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_sg_sutd_dss_protocol_StorageStat_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_sg_sutd_dss_protocol_StatReport_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_sg_sutd_dss_protocol_StatReport_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_sg_sutd_dss_protocol_StatReport_StorageStat_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_sg_sutd_dss_protocol_StatReport_StorageStat_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_sg_sutd_dss_protocol_StatReportAck_descriptor;
   private static
@@ -3366,15 +3366,15 @@ public final class HeartBeat {
       "t\022\010\n\004GOOD\020\001\022\013\n\007DELETED\020\002\"e\n\rUserStoreSta" +
       "t\022\016\n\006userId\030\001 \002(\t\022\022\n\nblockCount\030\002 \001(\005\0220\n" +
       "\010encBlock\030\003 \003(\0132\036.sg.sutd.dss.protocol.E" +
-      "ncBlock\"\347\001\n\nStatReport\022\017\n\007snodeId\030\001 \002(\t\022" +
-      "\n\n\002sn\030\002 \001(\005\022:\n\004stat\030\003 \002(\0132,.sg.sutd.dss." +
-      "protocol.StatReport.StorageStat\022:\n\ruserS",
-      "toreStat\030\004 \003(\0132#.sg.sutd.dss.protocol.Us" +
-      "erStoreStat\032D\n\013StorageStat\022\022\n\ntotalSpace" +
-      "\030\001 \002(\003\022\021\n\tfreeSpace\030\002 \002(\003\022\016\n\006upTime\030\003 \001(" +
-      "\003\"K\n\rStatReportAck\022:\n\ruserStoreStat\030\001 \003(" +
-      "\0132#.sg.sutd.dss.protocol.UserStoreStatB%" +
-      "\n\030sg.edu.sutd.dss.protocolB\tHeartBeat"
+      "ncBlock\"D\n\013StorageStat\022\022\n\ntotalSpace\030\001 \002" +
+      "(\003\022\021\n\tfreeSpace\030\002 \002(\003\022\016\n\006upTime\030\003 \001(\003\"\226\001" +
+      "\n\nStatReport\022\017\n\007snodeId\030\001 \002(\t\022\n\n\002sn\030\002 \001(",
+      "\005\022/\n\004stat\030\003 \002(\0132!.sg.sutd.dss.protocol.S" +
+      "torageStat\022:\n\ruserStoreStat\030\004 \003(\0132#.sg.s" +
+      "utd.dss.protocol.UserStoreStat\"K\n\rStatRe" +
+      "portAck\022:\n\ruserStoreStat\030\001 \003(\0132#.sg.sutd" +
+      ".dss.protocol.UserStoreStatB%\n\030sg.edu.su" +
+      "td.dss.protocolB\tHeartBeat"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3397,24 +3397,24 @@ public final class HeartBeat {
               new java.lang.String[] { "UserId", "BlockCount", "EncBlock", },
               sg.edu.sutd.dss.protocol.HeartBeat.UserStoreStat.class,
               sg.edu.sutd.dss.protocol.HeartBeat.UserStoreStat.Builder.class);
-          internal_static_sg_sutd_dss_protocol_StatReport_descriptor =
+          internal_static_sg_sutd_dss_protocol_StorageStat_descriptor =
             getDescriptor().getMessageTypes().get(2);
+          internal_static_sg_sutd_dss_protocol_StorageStat_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_sg_sutd_dss_protocol_StorageStat_descriptor,
+              new java.lang.String[] { "TotalSpace", "FreeSpace", "UpTime", },
+              sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.class,
+              sg.edu.sutd.dss.protocol.HeartBeat.StorageStat.Builder.class);
+          internal_static_sg_sutd_dss_protocol_StatReport_descriptor =
+            getDescriptor().getMessageTypes().get(3);
           internal_static_sg_sutd_dss_protocol_StatReport_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_sg_sutd_dss_protocol_StatReport_descriptor,
               new java.lang.String[] { "SnodeId", "Sn", "Stat", "UserStoreStat", },
               sg.edu.sutd.dss.protocol.HeartBeat.StatReport.class,
               sg.edu.sutd.dss.protocol.HeartBeat.StatReport.Builder.class);
-          internal_static_sg_sutd_dss_protocol_StatReport_StorageStat_descriptor =
-            internal_static_sg_sutd_dss_protocol_StatReport_descriptor.getNestedTypes().get(0);
-          internal_static_sg_sutd_dss_protocol_StatReport_StorageStat_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_sg_sutd_dss_protocol_StatReport_StorageStat_descriptor,
-              new java.lang.String[] { "TotalSpace", "FreeSpace", "UpTime", },
-              sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.class,
-              sg.edu.sutd.dss.protocol.HeartBeat.StatReport.StorageStat.Builder.class);
           internal_static_sg_sutd_dss_protocol_StatReportAck_descriptor =
-            getDescriptor().getMessageTypes().get(3);
+            getDescriptor().getMessageTypes().get(4);
           internal_static_sg_sutd_dss_protocol_StatReportAck_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_sg_sutd_dss_protocol_StatReportAck_descriptor,

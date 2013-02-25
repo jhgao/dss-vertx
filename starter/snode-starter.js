@@ -27,11 +27,11 @@ var appConfig = {
 }
 
 // Start the verticles that make up the app
-var deployID_snode = vertx.deployVerticle("sg.edu.sutd.dss.storage.node.vertx.StorageNode",appConfig.command_server_conf,4,function(){
+var deployID_snode = vertx.deployVerticle("sg.edu.sutd.dss.node.storage.vertx.StorageNode",appConfig.command_server_conf,4,function(){
 		loginfo("StorageNode deployed");
 });
 
-var deployID_heartbeater = vertx.deployVerticle("sg.edu.sutd.dss.storage.node.vertx.HeartBeater",appConfig.heart_beater_conf,1,function(){
+var deployID_heartbeater = vertx.deployVerticle("sg.edu.sutd.dss.node.storage.vertx.HeartBeater",appConfig.heart_beater_conf,1,function(){
 		loginfo("HeartBeater deployed");
 });
 
