@@ -1,5 +1,6 @@
 package sg.edu.sutd.dss.node.controller.vertx;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
 import org.vertx.java.core.Handler;
@@ -36,7 +37,30 @@ public class BackendServer extends Verticle {
 		// initialize handlers
 		httpServerRequestHandler = new Handler<HttpServerRequest>() {
 			public void handle(HttpServerRequest request) {
-				logger.info("A backend request has arrived on the server!");
+//				logger.info("A backend request has arrived on the server!");
+				StringBuilder sb = new StringBuilder();
+				for (Map.Entry<String, String> header : request.headers()	//header
+						.entrySet()) {
+					sb.append(header.getKey()).append(": ")
+							.append(header.getValue()).append("\n");
+				}
+
+				for (Map.Entry<String, String> arg : request.params()	//args
+						.entrySet()) {
+					sb.append("[ARG]").append(arg.getKey()).append(": ")
+							.append(arg.getValue()).append("\n");
+				}
+				
+				String file = "";
+			      if (request.path.equals("/")) {
+			        file = "index.html";
+			      } else if (!request.path.contains("..")) {
+			        file = request.path;
+			      }
+			      request.response.sendFile("web/" + file);
+			      
+//				request.response.putHeader("content-type", "text/plain");
+//				request.response.end(sb.toString());
 			}
 		};
 
