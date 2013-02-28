@@ -460,7 +460,7 @@ width: 26%;
 border-radius: 5px;
 }
 
-.overview_today, .overview_previous {
+.overview_lasthour, .overview_startup {
 width: 50%;
 float: left;}
 
@@ -471,7 +471,7 @@ text-transform: uppercase;
 text-shadow: 0 1px 0 #fff;
 }
 
-.stats_overview p.overview_day {
+.stats_overview p.overview_time {
 font-size: 12px;
 font-weight: bold;
 margin: 6px 0;
